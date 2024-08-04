@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract proteinMaintenance {
+
+    uint256 public initialBodyWeight;
+    uint256 private currentBodyWeight;
+    uint256 public totalMissedProteinDays;
+
+    function proteinIntake(uint256 _initialWeight, uint256 _dailyProtein) external {
+        assert(_initialWeight > 40);
+        require(_dailyProtein > 100, "Daily protein intake must be more than 100 grams");
+
+        initialBodyWeight = _initialWeight;
+    }
+
+    function missedProteinDays(uint256 _daysMissed) external {
+        if (_daysMissed >= 5) {
+            revert("Missed days exceeded the limit ");
+        }
+        totalMissedProteinDays = _daysMissed;
+    }
+
+   
+}
